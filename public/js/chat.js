@@ -13,6 +13,7 @@ btnMessage.addEventListener("click",()=>{
         message:inputMessage.value
     }
     socket.emit("mensajeCliente", data)
+    inputMessage.value=""
 })
 
 socket.on("inicio", data=>{
