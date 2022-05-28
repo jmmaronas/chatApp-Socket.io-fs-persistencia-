@@ -25,9 +25,7 @@
                             <form id="formLogin" action="/login" method="post" class="bg-white  rounded-5 shadow-5-strong p-5">
                                 <!-- Email input -->
                                 <div class="form-outline mb-4">
-                                    <% if (user) { %>
-                                    <p class="text-danger">Usuario no encontrado</p> 
-                                    <% } %>                                   
+                                    
                                     <input type="text" id="userName" class="form-control"  name="userName"/>
                                     <label class="form-label" for="userName">Nombre de usuaio</label>
                                 </div>
@@ -38,11 +36,13 @@
                                     <label class="form-label" for="userPass">Password</label>
                                 </div>
 
-                                
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="recupero" class="form-control" />
+                                    <label class="form-label" for="recupero">Palabra de recuperacion</label>
+                                </div>
 
                                 <!-- Submit button -->
-                                <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                <a href="/newUserForm" class="btn btn-primary btn-block">Sign in</a>
+                                <button type="submit" class="btn btn-primary btn-block">Crear</button>
                             </form>
                         </div>
                     </div>
