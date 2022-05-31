@@ -7,12 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="./style/login.css">
+    <link rel="stylesheet" href="/style/login.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"
         defer></script>
         <script src="/socket.io/socket.io.js" defer></script>
-        <script src="./js/login.js" defer></script>
     <title>Chat</title>
 </head>
 <header>
@@ -22,27 +21,28 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-xl-5 col-md-8">
-                            <form id="formLogin" action="/login" method="post" class="bg-white  rounded-5 shadow-5-strong p-5">
+                            <form id="formLogin" action="/user/login" method="post" class="bg-white  rounded-5 shadow-5-strong p-5">
                                 <!-- Email input -->
                                 <div class="form-outline mb-4">
-                                    <% if (user) { %>
+                                    <input type="text" id="userName" class="form-control"  name="userName"/>
+                                    <% if (!user) { %>
                                     <p class="text-danger">Usuario no encontrado</p> 
                                     <% } %>                                   
-                                    <input type="text" id="userName" class="form-control"  name="userName"/>
                                     <label class="form-label" for="userName">Nombre de usuaio</label>
                                 </div>
 
                                 <!-- Password input -->
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="userPass" class="form-control" />
+                                    <input type="password" id="userPass" class="form-control" name="userPass" />
+                                    <% if (!pass) { %>
+                                        <p class="text-danger">Contraseña incorrecta</p> 
+                                    <% } %>  
                                     <label class="form-label" for="userPass">Password</label>
                                 </div>
-
-                                
-
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-primary btn-block">Login</button>
-                                <a href="/newUserForm" class="btn btn-primary btn-block">Sign in</a>
+                                <a href="/user/register" class="btn btn-primary btn-block">Sign in</a>
+                                <a href="/user/recovery" class="btn btn-primary btn-block">Olvido su contraseña</a>
                             </form>
                         </div>
                     </div>

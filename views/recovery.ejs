@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style/login.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"
+        defer></script>
+    <script src="/socket.io/socket.io.js" defer></script>
+
+    <title>Restaurar</title>
+</head>
+<header>
+
+    <body>
+        <div id="intro" class="mt-1 bg-image shadow-2-strong">
+            <div class="mask d-flex align-items-center h-100" style="background-color: rgba(0, 0, 0, 0.8);">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-xl-5 col-md-8">
+                            <form id="formLogin" action="/user/recovery" method="post"
+                                class="bg-white  rounded-5 shadow-5-strong p-5">
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="userName" class="form-control" name="userName" />
+                                    <% if (!userName) { %>
+                                        <p class="text-danger">Usuario no encontrado</p>
+                                    <% } %>
+                                    <label class="form-label" for="userName">Nombre de usuaio</label>
+                                </div>
+
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="recupero" class="form-control" name="recupero" />
+                                    <% if (!userRecovery) { %>
+                                        <p class="text-danger">Recupero invalido</p>
+                                    <% } %>
+                                    <label class="form-label" for="recupero">Recupero</label>
+                                </div>
+                                <!-- Password input -->
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="userPass" class="form-control" name="newPass" />
+                                    <% if (!userPass) { %>
+                                        <p class="text-danger">Error no coinciden las contraseñas</p>
+                                    <% } %>
+                                    <label class="form-label" for="userPass">New Password</label>
+                                </div>
+
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="confirm" class="form-control" name="confirmPass" />
+                                    <label class="form-label" for="confirm">Ingrese nuevamesnte su Password</label>
+                                </div>
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block">Confirm</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</header>
+<!--Main Navigation-->
+
+</body>
+
+</html>

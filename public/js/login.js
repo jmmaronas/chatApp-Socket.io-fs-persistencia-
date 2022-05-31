@@ -7,9 +7,6 @@ formLogin.addEventListener("submit", (e) => {
     const userName = document.getElementById("userName").value
     console.log(userName)
     socket.emit("usuario", {userName})
-    socket.on("nuevoUsuario", data=>{
-        localStorage.setItem("localUser", JSON.stringify(data))
-    })
     e.target.submit()
 })
 

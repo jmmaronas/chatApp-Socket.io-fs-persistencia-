@@ -1,3 +1,4 @@
+const res = require("express/lib/response")
 const fs = require("fs")
 
 class Contenedor {
@@ -16,6 +17,15 @@ class Contenedor {
             console.error(err)
         }
         return objetoNuevo.id
+    }
+    async update(arrayObjetos){
+        try{
+            await fs.promises.writeFile(this.nombreDelArchivo, JSON.stringify(arrayObjetos))
+            console.log("Updated!!")
+        }
+        catch(err){
+            console.error(err)
+        }
     }
     async getById(id) {
         let objetos = await this.getAll()
@@ -37,6 +47,24 @@ class Contenedor {
     }
     async deleteAll() {
         await fs.promises.writeFile(this.nombreDelArchivo, "")
+    }
+    async validateUser(name) {
+        let objetos= await this.getAll()
+        console.log(objetos)
+        return await objetos.find(e=>e.userName===name)
+    }
+    async validateRecovery(name, pass, recovery){
+        let objetos= await this.getAll()
+        let indice= objetos.findIndex(e=>e.userName===name)
+        if(indice!==1){
+            if(objetos[indice].userRecovery===recovery){
+                objetos[indice].userPass=pass
+                await this.update(objetos)
+                return res.redirect("/user/login")
+            }
+            return {userName:true, userRecovery:false}
+        }
+        return {userName:false, userRecovery:true}
     }
 }
 const archivoJson = new Contenedor("entrega-6.json")

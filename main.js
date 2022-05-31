@@ -3,6 +3,7 @@ const { Server: HttpServer } = require("http")
 const { Server: IOServer, Socket } = require("socket.io")
 const ejs = require("ejs")
 const { archivoChat, archivoJson } = require("./src/services/app.js")
+const  userRouter  =require("./src/routes/userRouter.js")
 
 const PORT = process.env.PORT || 8080
 let usuario = ""
@@ -20,23 +21,21 @@ app.set("views engine", "ejs")
 app.use(express.static(__dirname + "/public"))
 
 app.get("/", (req, res) => {
-    return res.render("login.ejs", {user:true})
+    return res.render("login.ejs", {user:true, pass:true})
 })
-app.post("/login",async (req, res) => {
-    const { userName } = req.body
-    const userList= await archivoJson.getAll()
-    if(userList.some(user=>user.userName===userName)){
-        return res.render("chat.ejs", { userName })
-    }
-    return res.render("login.ejs", {user:false})
+
+app.get("/chat", (req,res)=>{
+    const {user, avatar}=req.query    
+    res.render("chat.ejs", {user, avatar} )
 })
-app.get("/newUserForm", (req,res)=>{
-    res.render("newUserForm.ejs")
-})
+
+app.use("/user", userRouter)
+
 
 const server = httpServer.listen(PORT, () => {
     console.log(`Server on port: ${server.address().port}`)
 })
+
 server.on("error", (err) => console.error(err))
 
 io.on("connection", async socket => {
